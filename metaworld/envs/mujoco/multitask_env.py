@@ -1,6 +1,7 @@
 from copy import deepcopy
 
 import gym
+from gym.utils import seeding
 from gym.spaces import Box
 import numpy as np
 
@@ -54,6 +55,10 @@ class MultiClassMultiTaskEnv(gym.Env):
         self._n_discrete_goals = len(task_env_cls_dict.keys())
         self._active_task = 0
         self._check_env_list()
+
+    def seed(self, seed=None):
+        self.mt_np_random, seed = seeding.np_random(seed)
+        return [seed]
 
     @property
     def all_task_names(self):
@@ -123,7 +128,7 @@ class MultiClassMultiTaskEnv(gym.Env):
             self._active_task = task % len(self._task_envs)
 
     def sample_tasks(self, meta_batch_size):
-        tasks = np.random.randint(0, self.num_tasks, size=meta_batch_size).tolist()
+        tasks = self.mt_np_random.randint(0, self.num_tasks, size=meta_batch_size).tolist()
 
         if self._sample_goals:
             goals = [

@@ -130,13 +130,13 @@ class SawyerStickPullEnv(SawyerXYZEnv):
         self._state_goal = np.array([0.3, 0.4, self.stick_init_pos[-1]])
 
         if self.random_init:
-            goal_pos = np.random.uniform(
+            goal_pos = self.np_random.uniform(
                 self.obj_and_goal_space.low,
                 self.obj_and_goal_space.high,
                 size=(self.obj_and_goal_space.low.size),
             )
             while np.linalg.norm(goal_pos[:2] - goal_pos[-3:-1]) < 0.1:
-                goal_pos = np.random.uniform(
+                goal_pos = self.np_random.uniform(
                     self.obj_and_goal_space.low,
                     self.obj_and_goal_space.high,
                     size=(self.obj_and_goal_space.low.size),

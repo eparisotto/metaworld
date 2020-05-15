@@ -128,7 +128,7 @@ class SawyerBinPickingEnv(SawyerXYZEnv):
         self.heightTarget = self.objHeight + self.liftThresh
 
         if self.random_init:
-            self.obj_init_pos = np.random.uniform(np.array([-0.22, -0.02]),
+            self.obj_init_pos = self.np_random.uniform(np.array([-0.22, -0.02]),
                                                   np.array([0.6, 0.8]),
                                                   size=2)
             self.obj_init_pos = np.concatenate((self.obj_init_pos, [self.objHeight]))

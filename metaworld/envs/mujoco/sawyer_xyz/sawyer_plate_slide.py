@@ -107,7 +107,7 @@ class SawyerPlateSlideEnv(SawyerXYZEnv):
         self.objHeight = self.data.get_geom_xpos('objGeom')[2]
 
         if self.random_init:
-            obj_pos = np.random.uniform(
+            obj_pos = self.np_random.uniform(
                 self.obj_and_goal_space.low,
                 self.obj_and_goal_space.high,
                 size=(self.obj_and_goal_space.low.size),
