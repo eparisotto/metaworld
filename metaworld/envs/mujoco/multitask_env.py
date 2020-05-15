@@ -58,6 +58,8 @@ class MultiClassMultiTaskEnv(gym.Env):
 
     def seed(self, seed=None):
         self.mt_np_random, seed = seeding.np_random(seed)
+        for i, task_env in enumerate(self._task_envs):
+            task_env.seed(seed=seed+i if seed is not None else None)
         return [seed]
 
     @property
